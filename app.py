@@ -1,8 +1,11 @@
 
 import os
-os.environ['VECTARA_API_KEY'] = 'zqt_UXrBcnI2UXINZkrv4g1tQPhzj02vfdtqYJIDiA'
-os.environ['VECTARA_CORPUS_ID'] = '1'
-os.environ['VECTARA_CUSTOMER_ID']='1366999410'
+os.environ['VECTARA_API_KEY'] = 'zwt_MD0gpPStP7DARQICFDZ4XIolYlRvi7qYm61HcA'
+os.environ['VECTARA_CORPUS_ID'] = '5'
+os.environ['VECTARA_CUSTOMER_ID']='809312420'
+
+
+
 
 import os
 import json
@@ -70,9 +73,9 @@ def vectara_query(query: str, config: dict) -> None:
 
 
 # Set the environment variables
-os.environ['VECTARA_API_KEY'] = 'zqt_UXrBcnI2UXINZkrv4g1tQPhzj02vfdtqYJIDiA'
-os.environ['VECTARA_CORPUS_ID'] = '1'
-os.environ['VECTARA_CUSTOMER_ID'] = '1366999410'
+os.environ['VECTARA_API_KEY'] = 'zwt_MD0gpPStP7DARQICFDZ4XIolYlRvi7qYm61HcA'
+os.environ['VECTARA_CORPUS_ID'] = '5'
+os.environ['VECTARA_CUSTOMER_ID'] = '809312420'
 
 # Load config from environment variables
 api_key = os.environ.get("VECTARA_API_KEY", "")
@@ -98,8 +101,8 @@ if st.button("Run Query"):
     results, summary = vectara_query(query, config)
 
     # Display results
-    st.header("Results")
-    st.write(results)
+   ## st.header("Results")
+  #  st.write(results)
 
     # Display summary
     st.header("Summary")
