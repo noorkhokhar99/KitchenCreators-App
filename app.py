@@ -1,16 +1,19 @@
-
-import os
-os.environ['VECTARA_API_KEY'] = 'zwt_MD0gpPStP7DARQICFDZ4XIolYlRvi7qYm61HcA'
-os.environ['VECTARA_CORPUS_ID'] = '5'
-os.environ['VECTARA_CUSTOMER_ID']='809312420'
-
-
-
-
 import os
 import json
 import requests
 import streamlit as st
+import pandas as pd
+from sentence_transformers import CrossEncoder
+import numpy as np
+
+
+st.image("demo.jpeg")
+
+np.set_printoptions(suppress=True, precision=4)
+
+model = CrossEncoder('vectara/hallucination_evaluation_model')
+pd.set_option('display.width', 100)
+pd.set_option('display.max_colwidth', None)  # Use None to display full content without truncation
 
 def vectara_query(query: str, config: dict) -> None:
 
@@ -100,10 +103,21 @@ query = st.text_input("Enter your query:", "What does Kitchen Creators do?")
 if st.button("Run Query"):
     results, summary = vectara_query(query, config)
 
-    # Display results
-   ## st.header("Results")
-  #  st.write(results)
+    
 
     # Display summary
     st.header("Summary")
     st.write(summary)
+
+    # Additional processing
+    st.header("Additional Processing")
+
+    # Get texts and scores
+    texts = [r[0] for r in results[:5]]
+    scores = [model.predict([text, summary]) for text in texts]
+
+    # Create DataFrame
+    df = pd.DataFrame({'fact': texts, 'HHEM score': scores})
+
+    # Display DataFrame
+    st.write(df)
