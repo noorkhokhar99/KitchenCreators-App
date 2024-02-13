@@ -1,5 +1,4 @@
 streamlit
 requests
 numpy
-opencv-python
-
+sentence_transformers
